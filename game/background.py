@@ -1,5 +1,4 @@
 import pygame
-import sys
 from parameters import *
 
 #define function for bg

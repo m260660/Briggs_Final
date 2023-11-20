@@ -21,23 +21,24 @@ lives = NUM_LIVES
 
 while lives > 0 and running:
     for event in pygame.event.get():
-        if event.type == pygame.quit:
+        if event.type == pygame.QUIT:
             running = False
         # control player with keyboard
-        player.stop()
-        if event.type == pygame.KEYDOWN:
-            if event.key == pygame.K_DOWN:
-                print("you pressed da down key")
-                player.move_down()
-            if event.key == pygame.K_UP:
-                print("you pressed da up key")
-                player.move_up()
-            if event.key == pygame.K_LEFT:
-                print("you pressed da left key")
-                player.move_left()
-            if event.key == pygame.K_RIGHT:
-                print("you pressed da rite key")
-                player.move_right()
+        # player.stop()
+        # if event.type == pygame.KEYDOWN:
+        #     if event.key == pygame.K_DOWN:
+        #         print("you pressed da down key")
+        #         player.move_down()
+        #     if event.key == pygame.K_UP:
+        #         print("you pressed da up key")
+        #         player.move_up()
+        #     if event.key == pygame.K_LEFT:
+        #         print("you pressed da left key")
+        #         player.move_left()
+        #     if event.key == pygame.K_RIGHT:
+        #         print("you pressed da rite key")
+        #         player.move_right()
+
 
     player.update()
 
@@ -55,5 +56,3 @@ while True:
         if event.type == pygame.QUIT:
             pygame.quit()
             sys.exit()
-
-pygame.quit

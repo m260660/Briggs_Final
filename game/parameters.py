@@ -1,10 +1,9 @@
-
-SCREEN_WIDTH = 800
-SCREEN_HEIGHT = 600
+SCREEN_WIDTH = 1000
+SCREEN_HEIGHT = 700
 TILE_SIZE = 64
 
-MIN_SPEED = 0.5 #units in pixels per frame
+MIN_SPEED = 0.1 #units in pixels per frame
 MAX_SPEED = 3.0
-PLAYER_SPEED = 3.0
+PLAYER_SPEED = 1
 
 NUM_LIVES = 5
