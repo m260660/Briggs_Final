@@ -1,9 +1,11 @@
 import pygame
 import sys
+import random
 from parameters import *
 from background import *
 from player import *
 from Bullet import *
+from Enemy import *
 
 #Initialize Pygame
 pygame.init()
@@ -12,7 +14,12 @@ pygame.display.set_caption("Arena")
 
 #create a player
 player = Player(SCREEN_WIDTH/2, SCREEN_HEIGHT/2)
-bullet = Projectile(0,0, player.angle)
+# bullet = Projectile(0,0, player.angle)
+# enemy = Enemy()
+
+def add_bullets(num_bullets):
+    for _ in range(num_bullets):
+        bullets.add(Bullet(player.x, player.y))
 
 #Main loop
 running = True
@@ -21,7 +28,6 @@ draw_bg(background)
 
 lives = NUM_LIVES
 
-bullets = []
 while lives > 0 and running:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
@@ -43,26 +49,33 @@ while lives > 0 and running:
                 player.rotate_right()
             if event.key == pygame.K_SPACE:
                 # round = screen.  blit(background, (player.x, player.y))
-                round = bullet.draw(screen)
-                bullet.update()
-                bullets.append(round)
+                round = bullets.update()
+                # bullet.update()
+                bullets.add(round)
                 print("yay")
-    for round in bullets:
-        if bullet.x < 1000 and bullet.x > 0 and bullet.y > 0 and bullet.y < 600:
-            bullet.x += BULLET_SPEED
-            bullet.y += BULLET_SPEED
-        else:
-            bullets.remove(round)
-
+                for bullet in bullets:
+                    if bullet.x < 1000 and bullet.x > 0 and bullet.y > 0 and bullet.y < 600:
+                        bullet.x += BULLET_SPEED
+                        bullet.y += BULLET_SPEED
+                    # detect for collisions
+                    if bullet.x == enemies.x and bullet.y == enemies.y:
+                        enemies.remove(1)
+                        bullets.remove(1)
+                    else:
+                        bullets.remove(1)
 
     player.update()
-    # bullet.update()
+    bullets.update()
 
     #draw bg
     screen.blit(background, (0,0))
 
+
+
+
     #draw player and enemies
     player.draw(screen)
+    enemies.draw(screen)
 
 
     # update display

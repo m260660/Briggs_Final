@@ -8,7 +8,7 @@ from Bullet import *
 class Player(pygame.sprite.Sprite):
     def __init__(self, x, y):
         super().__init__()
-        self.angle = 0
+        self.angle = ANGLE
         self.image = pygame.image.load("../assets/sprites/player.png")
         self.up_image = pygame.transform.rotate(self.image, 0)
         self.rect = self.up_image.get_rect()

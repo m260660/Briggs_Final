@@ -2,7 +2,8 @@ import math
 import pygame
 from parameters import *
 
-class Projectile(pygame.sprite.Sprite): #creating class for bullet
+
+class Bullet(pygame.sprite.Sprite): #creating class for bullet
     def __init__(self, x, y, angle):
         super().__init__()
         self.image = pygame.image.load("../assets/sprites/bullet.png") #loading image
@@ -17,7 +18,13 @@ class Projectile(pygame.sprite.Sprite): #creating class for bullet
         self.y += math.sin(self.angle) + BULLET_SPEED
 
     def draw(self, screen):
-        screen.blit(self.image, (self.rect.x, self.rect.y))
+        screen.draw(self.image, (self.rect.x, self.rect.y))
+
+bullets = pygame.sprite.Group()
+
+# def add_bullets(num_bullets):
+#     for _ in range(num_bullets):
+#         bullets.add(Bullet(self.x, y)
 
 
 
