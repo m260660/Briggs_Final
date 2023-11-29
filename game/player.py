@@ -4,8 +4,6 @@ import pygame
 from parameters import *
 from Bullet import *
 
-# keys = pygame.key.get_pressed() #returns a lst of keys
-
 #create pygame sprite class for a player
 class Player(pygame.sprite.Sprite):
     def __init__(self, x, y):

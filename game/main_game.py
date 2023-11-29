@@ -14,7 +14,7 @@ pygame.display.set_caption("Arena")
 
 #create a player
 player = Player(SCREEN_WIDTH/2, SCREEN_HEIGHT/2)
-# enemy = Enemy()
+enemy = Enemy(SCREEN_WIDTH/3, SCREEN_HEIGHT/3)
 
 #Main loop
 running = True
@@ -30,6 +30,7 @@ while lives > 0 and running:
     player.forward()
     player.rotate_right()
     player.rotate_left()
+    enemy.update()
 
     # player.update()
     bullets.update()
@@ -39,7 +40,7 @@ while lives > 0 and running:
 
     # draw player and enemies
     player.draw(screen)
-    enemies.draw(screen)
+    enemy.draw(screen)
 
     # update display
     pygame.display.flip()
@@ -55,16 +56,16 @@ def shoot(self):
         bullets.add(round)
         print("yay")
 
-for bullet in bullets:
-    if bullet.x < 1000 and bullet.x > 0 and bullet.y > 0 and bullet.y < 600:
-        bullet.x += BULLET_SPEED
-        bullet.y += BULLET_SPEED
-    # detect for collisions
-    if bullet.x == enemies.x and bullet.y == enemies.y:
-        enemies.remove(1)
-        bullets.remove(1)
-    else:
-        bullets.remove(1)
+# for bullet in bullets:
+#     if bullet.x < 1000 and bullet.x > 0 and bullet.y > 0 and bullet.y < 600:
+#         bullet.x += BULLET_SPEED
+#         bullet.y += BULLET_SPEED
+#     # detect for collisions
+#     if bullet.x == enemies.x and bullet.y == enemies.y:
+#         enemies.remove(1)
+#         bullets.remove(1)
+#     else:
+#         bullets.remove(1)
 
 
 while True:
