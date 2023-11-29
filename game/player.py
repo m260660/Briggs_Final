@@ -44,36 +44,19 @@ class Player(pygame.sprite.Sprite):
         dy = 0
         speed = PLAYER_SPEED
         keys = pygame.key.get_pressed()  # returns a lst of keys
-        if keys[pygame.K_UP]:
-            if self.angle > 90 or self.angle < 270:
-                dx += math.cos(self.angle) * self.speed
-            elif self.angle < 90 or self.angle > 270:
-                dx += -math.cos(self.angle) * self.speed
-            if self.angle > 0 or self.angle < 180:
-                dy += -math.sin(self.angle) * self.speed
-            elif self.angle > 180 or self.angle < 360:
-                dy += math.sin(self.angle) * self.speed
+        rad_angle = math.radians(self.angle)  #Credits to CAPT Severson for degree conversion
+        if keys[pygame.K_UP]: # Credits to Jackson Winner for the key functions
+            # dx = math.cos(rad_angle) * self.speed
+            # dy = math.sin(rad_angle) * self.speed
 
-            # if self.angle < -90 or self.angle > -270:
-            #     dx += -math.cos(self.angle) * self.speed
-            # elif self.angle > -90 or self.angle < -270:
-            #     dx += math.cos(self.angle) * self.speed
-            # if self.angle < 0 or self.angle > -180:
-            #     dy += math.sin(self.angle) * self.speed
-            # elif self.angle < -180 or self.angle > -360:
-            #     dy += -math.sin(self.angle) * self.speed
-
-            # if self.angle > 90 or self.angle < 270 or self.angle > -90 or self.angle < -270:
-            #     dx += -math.cos(self.angle) * self.speed
-            # elif self.angle < 90 or self.angle > 270 or self.angle < -90 or self.angle > -270:
-            #     dx += math.cos(self.angle) * self.speed
-            # if self.angle > 0 or self.angle < 180 or self.angle < -180 or self.angle > -360:
-            #     dy += -math.sin(self.angle) * self.speed
-            # elif self.angle > 180 or self.angle < 360 or self.angle < 0 or self.angle > -180:
-            #     dy += math.sin(self.angle) * self.speed
-
-            # dx *= (1/math.sqrt(2))
-            # dy *= (1/math.sqrt(2))
+            if rad_angle > 90 or rad_angle < 270:
+                dx += math.cos(rad_angle) * self.speed
+            elif rad_angle < 90 or rad_angle > 270:
+                dx += -math.cos(rad_angle) * self.speed
+            if rad_angle > 0 or rad_angle < 180:
+                dy += -math.sin(rad_angle) * self.speed
+            elif rad_angle > 180 or rad_angle < 360:
+                dy += math.sin(rad_angle) * self.speed
 
         self.x += dx
         self.y += dy

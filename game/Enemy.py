@@ -1,6 +1,8 @@
 import pygame
 import random
 from parameters import *
+from player import *
+
 class Enemy(pygame.sprite.Sprite):
     def __init__(self, x, y):
         super().__init__()
@@ -15,6 +17,8 @@ class Enemy(pygame.sprite.Sprite):
     def update(self):
         self.x -= self.speed
         self.rect.x = self.x
+
+    
 
 enemies = pygame.sprite.Group()
 
