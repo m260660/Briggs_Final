@@ -26,7 +26,6 @@ class Player(pygame.sprite.Sprite):
         if keys[pygame.K_RIGHT]:
             self.angle -= TURN_SPEED
             self.up_image = pygame.transform.rotate(self.image, self.angle)
-            print(self.angle)
 
     def rotate_left(self):
         if abs(self.angle) > 360:
@@ -60,7 +59,8 @@ class Player(pygame.sprite.Sprite):
         self.y += dy
 
 
-
     def draw(self, screen):
         screen.blit(self.up_image, (self.x, self.y))
 
+
+player = Player(SCREEN_WIDTH/2, SCREEN_HEIGHT/2)
