@@ -3,7 +3,6 @@ import sys
 import random
 from parameters import *
 from background import *
-from player import *
 from Bullet import *
 from Enemy import *
 

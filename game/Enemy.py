@@ -3,7 +3,7 @@ import math
 import pygame
 import random
 from parameters import *
-from player import player
+from player import *
 
 class Enemy(pygame.sprite.Sprite):
     def __init__(self, x ,y):
@@ -29,7 +29,7 @@ class Enemy(pygame.sprite.Sprite):
         self.x += dx * self.speed
         self.y += dy * self.speed
 
-        # self.angle = math.atan2(dy, dx)
+        self.angle = math.atan2(dy, dx) #TROUBLE
         # self.angle = math.degrees(self.angle)
         if dx >= 0:
             self.angle -= TURN_SPEED
