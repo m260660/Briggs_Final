@@ -3,17 +3,13 @@ import sys
 import random
 from parameters import *
 from background import *
-from Bullet import *
+from Bullet import Bullet, bullets
 from Enemy import *
 
 #Initialize Pygame
 pygame.init()
 screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
 pygame.display.set_caption("Arena")
-
-#create a player
-# player = Player(SCREEN_WIDTH/2, SCREEN_HEIGHT/2)
-# enemy = Enemy(SCREEN_WIDTH/3, SCREEN_HEIGHT/3)
 
 #Main loop
 running = True
@@ -29,15 +25,17 @@ while lives > 0 and running:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             running = False
+    keys = pygame.key.get_pressed()
+    if keys[pygame.K_SPACE]:
+        bullet = Bullet(player.rect.x, player.rect.y, player.angle)
+        bullets.add(bullet)
 
+    #Allow sprite movements with their respective functions
     player.forward()
     player.rotate_right()
     player.rotate_left()
-    enemies.update()
-
-
-    # player.update()
-    bullets.update()
+    enemies.update()     #Follows player
+    bullets.update() #Creates bullet track
 
     # draw bg
     screen.blit(background, (0, 0))
@@ -45,31 +43,9 @@ while lives > 0 and running:
     # draw player and enemies
     player.draw(screen)
     enemies.draw(screen)
-
+    bullets.draw(screen)
     # update display
     pygame.display.flip()
-
-    #Bullet
-    def shoot(self):
-        keys = pygame.key.get_pressed()  # returns a lst of keys
-        if keys[pygame.K_SPACE]:
-            round = Bullet(0, 0)
-            round = bullets.update()
-            # bullet.update()
-            bullets.add(round)
-            print("yay")
-
-#Detects bullet collisions with border and enemies.
-for bullet in bullets:
-    if bullet.x < 1000 and bullet.x > 0 and bullet.y > 0 and bullet.y < 600:
-        bullet.x += BULLET_SPEED
-        bullet.y += BULLET_SPEED
-    # detect for collisions
-    if bullet.x == enemies.x and bullet.y == enemies.y:
-        enemies.remove(1)
-        bullets.remove(1)
-    else:
-        bullets.remove(1)
 
 #Exit
 while True:

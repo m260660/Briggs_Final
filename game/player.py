@@ -1,7 +1,6 @@
 import math
 import pygame
 from parameters import *
-from Bullet import *
 
 #create pygame sprite class for a player
 class Player(pygame.sprite.Sprite):
@@ -33,33 +32,30 @@ class Player(pygame.sprite.Sprite):
         if keys[pygame.K_LEFT]:
             self.angle += TURN_SPEED
             self.up_image = pygame.transform.rotate(self.image, self.angle)
-            print(self.angle)
 
     def forward(self):
         dx = 0
         dy = 0
-        speed = PLAYER_SPEED
-        keys = pygame.key.get_pressed()  # returns a lst of keys
+        #speed = PLAYER_SPEED
+        keys = pygame.key.get_pressed()  # returns a list of keys
         rad_angle = math.radians(self.angle)  #Credits to CAPT Severson for degree conversion
         if keys[pygame.K_UP]: # Credits to Jackson Winner for the key functions
-            # dx = math.cos(rad_angle) * self.speed
-            # dy = math.sin(rad_angle) * self.speed
 
-            if rad_angle > 90 or rad_angle < 270:
+            if abs(rad_angle) > 1.57 or abs(rad_angle) < 4.71:
                 dx += math.cos(rad_angle) * self.speed
-            elif rad_angle < 90 or rad_angle > 270:
+            elif abs(rad_angle) < 1.57 or abs(rad_angle) > 4.71:
                 dx += -math.cos(rad_angle) * self.speed
-            if rad_angle > 0 or rad_angle < 180:
+            if abs(rad_angle) > 0 or abs(rad_angle) < 3.14:
                 dy += -math.sin(rad_angle) * self.speed
-            elif rad_angle > 180 or rad_angle < 360:
+            elif abs(rad_angle) > 3.14 or abs(rad_angle) < 6.28:
                 dy += math.sin(rad_angle) * self.speed
 
         self.x += dx
         self.y += dy
-
+        self.rect.x = self.x
+        self.rect.y = self.y
 
     def draw(self, screen):
         screen.blit(self.up_image, (self.x, self.y))
-
 
 player = Player(SCREEN_WIDTH/2, SCREEN_HEIGHT/2)

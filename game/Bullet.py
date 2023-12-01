@@ -1,10 +1,6 @@
 import math
 import pygame
 from parameters import *
-from player import player
-
-player_x = player.x
-player_y = player.y
 
 class Bullet(pygame.sprite.Sprite): #creating class for bullet
     def __init__(self, x, y, angle):
@@ -12,41 +8,23 @@ class Bullet(pygame.sprite.Sprite): #creating class for bullet
         self.image = pygame.image.load("../assets/sprites/bullet.png") #loading image
         self.rect = self.image.get_rect()
         self.x = x
-        self.y = x
+        self.y = y
         self.rect.center = (x, y)
+        self.angle = angle
 
     def update(self):
-        dx = player.dx
-        dy = player.dy
-        distance = math.hypot(dx, dy)
-
-        dx = dx / (distance)
-        dy = dy / (distance)
-
-        self.x += dx + BULLET_SPEED #updates speed of bullet based on direction
-        self.y += dy + BULLET_SPEED
+        self.x += BULLET_SPEED * math.cos(math.radians(self.angle)) #updates speed of bullet based on direction
+        self.y -= BULLET_SPEED * math.sin(math.radians(self.angle))
+        if self.y < 0 or self.x < 0 or self.x > SCREEN_WIDTH:
+            self.kill()
 
         self.rect.x = self.x
         self.rect.y = self.y
 
     def draw(self, screen):
-        screen.draw(self.image, (player_x, player_y))
+        screen.draw(self.image, self.rect)
 
 bullets = pygame.sprite.Group()
-
-# def add_bullets(num_bullets):
-#     for _ in range(num_bullets):
-#         bullets.add(Bullet(self.x, y)
-
-# def shoot(self):
-#     keys = pygame.key.get_pressed()  # returns a lst of keys
-#     if keys[pygame.K_SPACE]:
-#         round = Bullet(0,0)
-#         round = bullets.update()
-#         # bullet.update()
-#         bullets.add(round)
-#         print("yay")
-
 
 
 

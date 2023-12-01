@@ -10,5 +10,3 @@ def draw_bg(screen):
             screen.blit(space, (x,y))
 
     #add obstacles
-
-

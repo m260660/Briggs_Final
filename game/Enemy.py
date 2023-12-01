@@ -1,5 +1,4 @@
 import math
-
 import pygame
 import random
 from parameters import *
@@ -43,7 +42,6 @@ class Enemy(pygame.sprite.Sprite):
         rad_angle = math.radians(self.angle)
 
         self.up_image = pygame.transform.rotate(self.image, rad_angle)
-        print(rad_angle)
         self.rect.x = self.x
         self.rect.y = self.y
 
