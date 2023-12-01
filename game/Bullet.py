@@ -38,14 +38,14 @@ bullets = pygame.sprite.Group()
 #     for _ in range(num_bullets):
 #         bullets.add(Bullet(self.x, y)
 
-def shoot(self):
-    keys = pygame.key.get_pressed()  # returns a lst of keys
-    if keys[pygame.K_SPACE]:
-        round = Bullet(0,0)
-        round = bullets.update()
-        # bullet.update()
-        bullets.add(round)
-        print("yay")
+# def shoot(self):
+#     keys = pygame.key.get_pressed()  # returns a lst of keys
+#     if keys[pygame.K_SPACE]:
+#         round = Bullet(0,0)
+#         round = bullets.update()
+#         # bullet.update()
+#         bullets.add(round)
+#         print("yay")
 
 
 

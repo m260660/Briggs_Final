@@ -35,17 +35,12 @@ while lives > 0 and running:
     player.rotate_left()
     enemies.update()
 
+
     # player.update()
     bullets.update()
 
     # draw bg
     screen.blit(background, (0, 0))
-
-    # for enemy in enemies:
-    #     if enemy.rect.x < SCREEN_WIDTH or enemy.rect.y > SCREEN_WIDTH:
-    #         enemies.remove(enemy)  # remove fish from sprite group
-    #         add_enemies(1)
-
 
     # draw player and enemies
     player.draw(screen)
@@ -54,7 +49,17 @@ while lives > 0 and running:
     # update display
     pygame.display.flip()
 
-#Bullets
+    #Bullet
+    def shoot(self):
+        keys = pygame.key.get_pressed()  # returns a lst of keys
+        if keys[pygame.K_SPACE]:
+            round = Bullet(0, 0)
+            round = bullets.update()
+            # bullet.update()
+            bullets.add(round)
+            print("yay")
+
+#Detects bullet collisions with border and enemies.
 for bullet in bullets:
     if bullet.x < 1000 and bullet.x > 0 and bullet.y > 0 and bullet.y < 600:
         bullet.x += BULLET_SPEED
@@ -66,6 +71,7 @@ for bullet in bullets:
     else:
         bullets.remove(1)
 
+#Exit
 while True:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
