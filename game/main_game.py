@@ -6,7 +6,6 @@ from background import *
 from player import *
 from Bullet import *
 from Enemy import *
-import time
 
 #Initialize Pygame
 pygame.init()
@@ -57,26 +56,16 @@ while lives > 0 and running:
     pygame.display.flip()
 
 #Bullets
-
-def shoot(self):
-    keys = pygame.key.get_pressed()  # returns a lst of keys
-    if keys[pygame.K_SPACE]:
-        round = Bullet(0,0, player.angle)
-        round = bullets.update()
-        # bullet.update()
-        bullets.add(round)
-        print("yay")
-
-# for bullet in bullets:
-#     if bullet.x < 1000 and bullet.x > 0 and bullet.y > 0 and bullet.y < 600:
-#         bullet.x += BULLET_SPEED
-#         bullet.y += BULLET_SPEED
-#     # detect for collisions
-#     if bullet.x == enemies.x and bullet.y == enemies.y:
-#         enemies.remove(1)
-#         bullets.remove(1)
-#     else:
-#         bullets.remove(1)
+for bullet in bullets:
+    if bullet.x < 1000 and bullet.x > 0 and bullet.y > 0 and bullet.y < 600:
+        bullet.x += BULLET_SPEED
+        bullet.y += BULLET_SPEED
+    # detect for collisions
+    if bullet.x == enemies.x and bullet.y == enemies.y:
+        enemies.remove(1)
+        bullets.remove(1)
+    else:
+        bullets.remove(1)
 
 while True:
     for event in pygame.event.get():

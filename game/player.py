@@ -1,5 +1,4 @@
 import math
-import time
 import pygame
 from parameters import *
 from Bullet import *

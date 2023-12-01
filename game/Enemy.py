@@ -30,22 +30,20 @@ class Enemy(pygame.sprite.Sprite):
         self.y += dy * self.speed
 
         # self.angle = math.atan2(dy, dx)
-        self.angle = math.degrees(self.angle)
-        if abs(self.angle) > 360:
-             self.angle = 0
+        # self.angle = math.degrees(self.angle)
+        if dx >= 0:
+            self.angle -= TURN_SPEED
+            if abs(self.angle) > 360:
+                self.angle = 0
+        if dx < 0:
+            self.angle += TURN_SPEED
+            if abs(self.angle) > 360:
+                self.angle = 0
 
-        # if dx >= 0 and dy >= 0:
-        #     self.angle += TURN_SPEED
-        #     self.up_image = pygame.transform.rotate(self.image, self.angle)
-        #     print(self.angle)
-        # if dx < 0 and dy >= 0:
-        #     self.angle -= TURN_SPEED
-        #     self.up_image = pygame.transform.rotate(self.image, self.angle)
-        #     print(self.angle)
+        rad_angle = math.radians(self.angle)
 
-        # rad_angle = math.radians(self.angle)
-        self.up_image = pygame.transform.rotate(self.image, self.angle)
-        # print(self.angle)
+        self.up_image = pygame.transform.rotate(self.image, rad_angle)
+        print(rad_angle)
         self.rect.x = self.x
         self.rect.y = self.y
 
