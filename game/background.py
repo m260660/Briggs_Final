@@ -9,6 +9,6 @@ def draw_bg(screen):
             screen.blit(space, (x,y))
 
     # draw text
-    font = pygame.font.Font("../assets/fonts/space_font.otf", size=60)
-    text = font.render('chomp', True, (255, 0, 0))
+    font = pygame.font.Font("../assets/fonts/space_font.otf", size=45)
+    text = font.render('LightSpeed', True, (255, 0, 0))
     screen.blit(text, (SCREEN_WIDTH / 2 - text.get_width() / 2, text.get_height() / 4))

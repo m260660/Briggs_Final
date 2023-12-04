@@ -4,6 +4,8 @@ SCREEN_WIDTH = 1000
 SCREEN_HEIGHT = 600
 TILE_SIZE = 64
 
+PI = math.pi
+
 MIN_SPEED = 0.1 #units in pixels per frame
 MAX_SPEED = 3.0
 PLAYER_SPEED = .5

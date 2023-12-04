@@ -12,16 +12,13 @@ pygame.init()
 screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
 pygame.display.set_caption("Arena")
 
-#clock object
-clock = pygame.time.Clock()
-
 #Main loop
 running = True
 background = screen.copy()
 draw_bg(background)
 
-#call enemy group
-add_enemies(3)
+# call enemy group
+add_enemies(10)
 
 #add alternate fish image
 life_icon = pygame.image.load("../assets/sprites/player.png").convert()
@@ -30,14 +27,31 @@ font = pygame.font.Font("../assets/fonts/space_font.otf", size=30)
 lives = NUM_LIVES
 score = 0
 
+#sounds
+player_shoot = pygame.mixer.Sound("../assets/sounds/player_shoot.wav")
+player_hit = pygame.mixer.Sound("../assets/sounds/player_hit.wav")
+enemy_shoot = pygame.mixer.Sound("../assets/sounds/enemy_shoot.wav")
+enemy_hit = pygame.mixer.Sound("../assets/sounds/enemy_hit.wav")
+theme = pygame.mixer.Sound("../assets/sounds/SWtheme.mp3")
+
+#play game over sound effect
+pygame.mixer.Sound.play(theme)
+
 while lives > 0 and running:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             running = False
     keys = pygame.key.get_pressed()
     if keys[pygame.K_SPACE]:
-         bullet = Bullet(player.rect.x, player.rect.y, player.angle)
-         bullets.add(bullet)
+        bullet = Bullet(player.rect.x, player.rect.y, player.angle)
+        bullets.add(bullet)
+        pygame.mixer.Sound.play(player_shoot)
+
+    if random.randint(1,350) == 1:
+        for enemy in enemies:
+            enemy_bullet = Enemy_Bullet(enemy.x, enemy.y, math.degrees(enemy.angle))
+            enemy_bullets.add(enemy_bullet)
+            pygame.mixer.Sound.play(enemy_shoot)
 
     #Allow sprite movements with their respective functions
     player.forward()
@@ -45,6 +59,7 @@ while lives > 0 and running:
     player.rotate_left()
     enemies.update()     #Follows player
     bullets.update() #Creates bullet track
+    enemy_bullets.update()
 
     # draw bg
     screen.blit(background, (0, 0))
@@ -53,16 +68,15 @@ while lives > 0 and running:
     result = pygame.sprite.spritecollide(player, enemy_bullets, True)
     if result:
         # play hurt sound
-        # pygame.mixer.Sound.play(hurt)
-        # play hurt sound
+        pygame.mixer.Sound.play(player_hit)
         lives -= 1
 
     # check for enemy and bullet collisions
     result = pygame.sprite.groupcollide(bullets, enemies, True, True)
     # credits to Mathew Robinson for helping configure groupcollide
     if result:
-        # play chomp sound
-        # pygame.mixer.Sound.play(chomp)
+        # play hit sound
+        pygame.mixer.Sound.play(enemy_hit)
         score += len(result)
         print(score)
         # draw more enemies on screen
@@ -72,7 +86,7 @@ while lives > 0 and running:
     player.draw(screen)
     enemies.draw(screen)
     bullets.draw(screen)
-    # update display
+    enemy_bullets.draw(screen)
 
     # draw the score on the screen
     text = font.render(f'score: {score}', True, (255, 0, 0))
@@ -80,12 +94,12 @@ while lives > 0 and running:
 
     # draw lives in lower left corner
     for i in range(lives):
-        screen.blit(life_icon, (i * 100, SCREEN_HEIGHT - TILE_SIZE))
+        screen.blit(life_icon, (i * 55, SCREEN_HEIGHT - TILE_SIZE))
 
     pygame.display.flip()
-    
+
     # limit time frame
-    clock.tick(60)
+    # clock.tick(3600)
 
 #once all lives are gone
 #create new bg when game over
@@ -99,9 +113,6 @@ screen.blit(score_text, (SCREEN_WIDTH/2 -score_text.get_width()/2, SCREEN_HEIGHT
 
 #update display
 pygame.display.flip()
-
-#play game over sound effect
-# pygame.mixer.Sound.play(bubbles)
 
 #Exit
 while True:

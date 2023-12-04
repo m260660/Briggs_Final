@@ -29,29 +29,28 @@ class Enemy(pygame.sprite.Sprite):
         self.y += dy * self.speed
 
         self.angle = math.atan2(dy, dx) #TROUBLE
-        # self.angle = math.degrees(self.angle)
         if dx >= 0:
             self.angle -= TURN_SPEED
-            if abs(self.angle) > 360:
+            if abs(self.angle) > PI*2:
                 self.angle = 0
         if dx < 0:
             self.angle += TURN_SPEED
-            if abs(self.angle) > 360:
+            if abs(self.angle) > PI*2:
                 self.angle = 0
 
-        rad_angle = math.radians(self.angle)
+        # rad_angle = math.radians(self.angle)
 
-        self.up_image = pygame.transform.rotate(self.image, rad_angle)
+        self.up_image = pygame.transform.rotate(self.image, self.angle)
         self.rect.x = self.x
         self.rect.y = self.y
 
     def draw(self, screen):
-        screen.blit(self.up_image, (self.x, self.y))
+        # screen.blit(self.up_image, (self.x, self.y))
+        screen.blit(self.up_image, self.rect)
 
 enemies = pygame.sprite.Group()
-# enemy = Enemy(SCREEN_WIDTH/3, SCREEN_HEIGHT/3)
 
 def add_enemies(num_enemies):
     for _ in range(num_enemies):
-        # enemies.add(Enemy(random.randint(SCREEN_WIDTH/2, SCREEN_WIDTH), random.randint(TILE_SIZE, SCREEN_HEIGHT - TILE_SIZE)))
-        enemies.add(Enemy(random.randint(SCREEN_WIDTH, SCREEN_WIDTH*1.5), random.randint(TILE_SIZE, SCREEN_HEIGHT - TILE_SIZE)))
+        enemy = Enemy(random.randint(0, 1000), random.randint(0, 600))
+        enemies.add(enemy)

@@ -27,9 +27,3 @@ class Enemy_Bullet(pygame.sprite.Sprite): #creating class for bullet
 enemy_bullets = pygame.sprite.Group()
 
 
-
-
-
-
-
-
