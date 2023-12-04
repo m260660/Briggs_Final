@@ -1,6 +1,7 @@
 import math
 import pygame
 from parameters import *
+from Bullet import Bullet, bullets
 
 #create pygame sprite class for a player
 class Player(pygame.sprite.Sprite):

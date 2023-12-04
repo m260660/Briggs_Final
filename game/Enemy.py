@@ -53,5 +53,5 @@ enemies = pygame.sprite.Group()
 
 def add_enemies(num_enemies):
     for _ in range(num_enemies):
-        enemies.add(Enemy(random.randint(0, SCREEN_WIDTH), random.randint(TILE_SIZE, SCREEN_HEIGHT - TILE_SIZE)))
-        print(len(enemies))
+        # enemies.add(Enemy(random.randint(SCREEN_WIDTH/2, SCREEN_WIDTH), random.randint(TILE_SIZE, SCREEN_HEIGHT - TILE_SIZE)))
+        enemies.add(Enemy(random.randint(SCREEN_WIDTH, SCREEN_WIDTH*1.5), random.randint(TILE_SIZE, SCREEN_HEIGHT - TILE_SIZE)))
