@@ -12,13 +12,16 @@ pygame.init()
 screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
 pygame.display.set_caption("Arena")
 
+#clock object
+clock = pygame.time.Clock()
+
 #Main loop
 running = True
 background = screen.copy()
 draw_bg(background)
 
 # call enemy group
-add_enemies(10)
+add_enemies(2)
 
 #uses player as life icon
 life_icon = pygame.image.load("../assets/sprites/player.png").convert()
@@ -47,7 +50,7 @@ while lives > 0 and running:
         bullets.add(bullet)
         pygame.mixer.Sound.play(player_shoot)
 
-    if random.randint(1,350) == 1: #randomizes enemy bullets being fired
+    if random.randint(1,1000) == 1: #randomizes enemy bullets being fired
         for enemy in enemies:
             enemy_bullet = Enemy_Bullet(enemy.x, enemy.y, math.degrees(enemy.angle)) #references the instantaneous position of the enemy
             enemy_bullets.add(enemy_bullet)
@@ -99,7 +102,7 @@ while lives > 0 and running:
     pygame.display.flip()
 
     # limit time frame
-    # clock.tick(3600)
+    clock.tick(3600)
 
 #once all lives are gone
 #create new bg when game over

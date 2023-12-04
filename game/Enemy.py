@@ -11,6 +11,8 @@ class Enemy(pygame.sprite.Sprite):
         self.image = pygame.image.load("../assets/sprites/enemy.png")
         self.up_image = pygame.transform.rotate(self.image, 0)
         self.rect = self.image.get_rect()
+        self.rect.x = x  #Jackson winner configured the x and y variables that make multiple enemies spawn
+        self.rect.y = y
         self.x = self.rect.x
         self.y = self.rect.y
         self.rect.center = (self.x, self.y)
