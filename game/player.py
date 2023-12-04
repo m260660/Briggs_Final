@@ -51,7 +51,7 @@ class Player(pygame.sprite.Sprite):
             elif abs(rad_angle) > 3.14 or abs(rad_angle) < 6.28:
                 dy += math.sin(rad_angle) * self.speed
 
-        if self.x > SCREEN_WIDTH - TILE_SIZE:
+        if self.x > SCREEN_WIDTH - TILE_SIZE: #Limits player movement to the screen dimensions
             self.x = SCREEN_WIDTH - TILE_SIZE
         if self.x < 0:
             self.x = 0
@@ -62,7 +62,6 @@ class Player(pygame.sprite.Sprite):
 
         self.x += dx
         self.y += dy
-
 
         self.rect.x = self.x
         self.rect.y = self.y

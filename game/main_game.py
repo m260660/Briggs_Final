@@ -20,7 +20,7 @@ draw_bg(background)
 # call enemy group
 add_enemies(10)
 
-#add alternate fish image
+#uses player as life icon
 life_icon = pygame.image.load("../assets/sprites/player.png").convert()
 
 font = pygame.font.Font("../assets/fonts/space_font.otf", size=30)
@@ -32,7 +32,7 @@ player_shoot = pygame.mixer.Sound("../assets/sounds/player_shoot.wav")
 player_hit = pygame.mixer.Sound("../assets/sounds/player_hit.wav")
 enemy_shoot = pygame.mixer.Sound("../assets/sounds/enemy_shoot.wav")
 enemy_hit = pygame.mixer.Sound("../assets/sounds/enemy_hit.wav")
-theme = pygame.mixer.Sound("../assets/sounds/SWtheme.mp3")
+theme = pygame.mixer.Sound("../assets/sounds/SWtheme.mp3") #background music
 
 #play game over sound effect
 pygame.mixer.Sound.play(theme)
@@ -47,9 +47,9 @@ while lives > 0 and running:
         bullets.add(bullet)
         pygame.mixer.Sound.play(player_shoot)
 
-    if random.randint(1,350) == 1:
+    if random.randint(1,350) == 1: #randomizes enemy bullets being fired
         for enemy in enemies:
-            enemy_bullet = Enemy_Bullet(enemy.x, enemy.y, math.degrees(enemy.angle))
+            enemy_bullet = Enemy_Bullet(enemy.x, enemy.y, math.degrees(enemy.angle)) #references the instantaneous position of the enemy
             enemy_bullets.add(enemy_bullet)
             pygame.mixer.Sound.play(enemy_shoot)
 
