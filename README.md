@@ -6,7 +6,7 @@ The Player file creates a sprite which is a grey diamond shape. It contains the 
 
 The Enemy file creates a sprite using the image enemy.png, a spaceship with two straight wings. The purpose of the enemy is to follow the player and shoot you down. It tracks players coordinates and follows them. It is created as a sprite group; it add_enemies sets random coordinates for an enemy sprite and inputs a number of enemies in main_game.
 
-The Bullet file is activated by the space bar. It shoots in the instantaneous direction the player travels in upon firing. CAPT Severson helped configure firing a bullet in the same direction of the player. It disappears upon collision with borders and enemies
+The Bullet file is activated by the space bar. It shoots in the instantaneous direction the player travels in upon firing. CAPT Severson helped configure firing a bullet in the same direction of the player. It disappears upon collision with borders and enemies. Matthew Robinson helped me activate a gorupcollide function between the bullets and enemies
 
 The Enemy Bullet file allows the Enemy to shoot bullets randomly in the direction they travel. It uses a random function to fire them unpredictably. Only enemy bullets hurt player; it uses a different .png file to decide whether a player should take damage or not
   
